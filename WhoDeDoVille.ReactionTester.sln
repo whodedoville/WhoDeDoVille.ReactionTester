@@ -1,0 +1,96 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.5.33627.172
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhoDeDoVille.ReactionTester.AFApi", "WhoDeDoVille.ReactionTester.AFApi\WhoDeDoVille.ReactionTester.AFApi.csproj", "{31452C18-4E5E-4D00-9BC1-17D49F88689C}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8729075A-EA43-40AF-B810-93D3C7731494} = {8729075A-EA43-40AF-B810-93D3C7731494}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhoDeDoVille.ReactionTester.Application", "WhoDeDoVille.ReactionTester.Application\WhoDeDoVille.ReactionTester.Application.csproj", "{F6EAA155-721A-4103-A73C-5DF1A65AED61}"
+	ProjectSection(ProjectDependencies) = postProject
+		{8729075A-EA43-40AF-B810-93D3C7731494} = {8729075A-EA43-40AF-B810-93D3C7731494}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhoDeDoVille.ReactionTester.Domain", "WhoDeDoVille.ReactionTester.Domain\WhoDeDoVille.ReactionTester.Domain.csproj", "{AE563063-8372-42C7-B60A-7BEE8DD89F71}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhoDeDoVille.ReactionTester.Infrastructure", "WhoDeDoVille.ReactionTester.Infrastructure\WhoDeDoVille.ReactionTester.Infrastructure.csproj", "{0E6F9401-1757-4543-998B-8C0B9451033B}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{11D92436-6CC0-4790-8C8E-FB9F9823F56C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{96E5AB86-6B24-4663-AD17-8FA254D0101E}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhoDeDoVille.ReactionTester.Infrastructure.UnitTests", "WhoDeDoVille.ReactionTester.Infrastructure.UnitTests\WhoDeDoVille.ReactionTester.Infrastructure.UnitTests.csproj", "{0C3EBF9A-29BB-4963-ADEC-986F22E0C459}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhoDeDoVille.ReactionTester.Domain.UnitTests", "WhoDeDoVille.ReactionTester.Domain.UnitTests\WhoDeDoVille.ReactionTester.Domain.UnitTests.csproj", "{55C2960A-F966-49A0-8290-A4873A45F052}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0E6F9401-1757-4543-998B-8C0B9451033B} = {0E6F9401-1757-4543-998B-8C0B9451033B}
+	EndProjectSection
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhoDeDoVille.ReactionTester.Application.UnitTests", "WhoDeDoVille.ReactionTester.Application.UnitTests\WhoDeDoVille.ReactionTester.Application.UnitTests.csproj", "{DDC0C855-D7BE-4A00-84FA-CECF05F34A00}"
+	ProjectSection(ProjectDependencies) = postProject
+		{0E6F9401-1757-4543-998B-8C0B9451033B} = {0E6F9401-1757-4543-998B-8C0B9451033B}
+		{31452C18-4E5E-4D00-9BC1-17D49F88689C} = {31452C18-4E5E-4D00-9BC1-17D49F88689C}
+		{AE563063-8372-42C7-B60A-7BEE8DD89F71} = {AE563063-8372-42C7-B60A-7BEE8DD89F71}
+		{F6EAA155-721A-4103-A73C-5DF1A65AED61} = {F6EAA155-721A-4103-A73C-5DF1A65AED61}
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhoDeDoVille.ReactionTester.Logging", "WhoDeDoVille.ReactionTester.Logging\WhoDeDoVille.ReactionTester.Logging.csproj", "{8729075A-EA43-40AF-B810-93D3C7731494}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{31452C18-4E5E-4D00-9BC1-17D49F88689C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{31452C18-4E5E-4D00-9BC1-17D49F88689C}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{31452C18-4E5E-4D00-9BC1-17D49F88689C}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{31452C18-4E5E-4D00-9BC1-17D49F88689C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F6EAA155-721A-4103-A73C-5DF1A65AED61}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F6EAA155-721A-4103-A73C-5DF1A65AED61}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F6EAA155-721A-4103-A73C-5DF1A65AED61}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F6EAA155-721A-4103-A73C-5DF1A65AED61}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE563063-8372-42C7-B60A-7BEE8DD89F71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE563063-8372-42C7-B60A-7BEE8DD89F71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE563063-8372-42C7-B60A-7BEE8DD89F71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE563063-8372-42C7-B60A-7BEE8DD89F71}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0E6F9401-1757-4543-998B-8C0B9451033B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0E6F9401-1757-4543-998B-8C0B9451033B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0E6F9401-1757-4543-998B-8C0B9451033B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0E6F9401-1757-4543-998B-8C0B9451033B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0C3EBF9A-29BB-4963-ADEC-986F22E0C459}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0C3EBF9A-29BB-4963-ADEC-986F22E0C459}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0C3EBF9A-29BB-4963-ADEC-986F22E0C459}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0C3EBF9A-29BB-4963-ADEC-986F22E0C459}.Release|Any CPU.Build.0 = Release|Any CPU
+		{55C2960A-F966-49A0-8290-A4873A45F052}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{55C2960A-F966-49A0-8290-A4873A45F052}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{55C2960A-F966-49A0-8290-A4873A45F052}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{55C2960A-F966-49A0-8290-A4873A45F052}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DDC0C855-D7BE-4A00-84FA-CECF05F34A00}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DDC0C855-D7BE-4A00-84FA-CECF05F34A00}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DDC0C855-D7BE-4A00-84FA-CECF05F34A00}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DDC0C855-D7BE-4A00-84FA-CECF05F34A00}.Release|Any CPU.Build.0 = Release|Any CPU
+		{8729075A-EA43-40AF-B810-93D3C7731494}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{8729075A-EA43-40AF-B810-93D3C7731494}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{8729075A-EA43-40AF-B810-93D3C7731494}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{8729075A-EA43-40AF-B810-93D3C7731494}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{31452C18-4E5E-4D00-9BC1-17D49F88689C} = {11D92436-6CC0-4790-8C8E-FB9F9823F56C}
+		{F6EAA155-721A-4103-A73C-5DF1A65AED61} = {11D92436-6CC0-4790-8C8E-FB9F9823F56C}
+		{AE563063-8372-42C7-B60A-7BEE8DD89F71} = {11D92436-6CC0-4790-8C8E-FB9F9823F56C}
+		{0E6F9401-1757-4543-998B-8C0B9451033B} = {11D92436-6CC0-4790-8C8E-FB9F9823F56C}
+		{0C3EBF9A-29BB-4963-ADEC-986F22E0C459} = {96E5AB86-6B24-4663-AD17-8FA254D0101E}
+		{55C2960A-F966-49A0-8290-A4873A45F052} = {96E5AB86-6B24-4663-AD17-8FA254D0101E}
+		{DDC0C855-D7BE-4A00-84FA-CECF05F34A00} = {96E5AB86-6B24-4663-AD17-8FA254D0101E}
+		{8729075A-EA43-40AF-B810-93D3C7731494} = {11D92436-6CC0-4790-8C8E-FB9F9823F56C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7DB6E362-0ED1-4EF8-AA5B-289DEE8157A3}
+	EndGlobalSection
+EndGlobal
