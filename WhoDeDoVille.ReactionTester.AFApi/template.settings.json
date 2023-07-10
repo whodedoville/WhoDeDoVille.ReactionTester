@@ -1,0 +1,41 @@
+{
+  "IsEncrypted": false,
+  "Values": {
+    "AzureWebJobsStorage": "UseDevelopmentStorage=true",
+    "FUNCTIONS_WORKER_RUNTIME": "dotnet-isolated",
+    "Environment": "Dev1"
+  },
+  "Environment": "Dev2",
+  "ConnectionStrings": {
+    "ReactionTester": {
+      "COSMOS_ENDPOINT": "",
+      "COSMOS_KEY": "",
+      "Database": {
+        "DatabaseName": "ReactionTester",
+        "Initialized": false
+      },
+      "Containers": {
+        "User_Container": {
+          "Name": "User",
+          "PartitionKey": "/UserId",
+          "Initialized": false
+        },
+        "BoardSequence_Container": {
+          "Name": "BoardSequence",
+          "PartitionKey": "/partitionkey",
+          "Initialized": false
+        },
+        "Board_Container": {
+          "Name": "Board",
+          "PartitionKey": "/partitionkey",
+          "Initialized": false
+        },
+        "BoardList_Container": {
+          "Name": "BoardList",
+          "PartitionKey": "/sequence",
+          "Initialized": false
+        }
+      }
+    }
+  }
+}

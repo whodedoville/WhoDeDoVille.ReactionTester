@@ -38,6 +38,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WhoDeDoVille.ReactionTester
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WhoDeDoVille.ReactionTester.Logging", "WhoDeDoVille.ReactionTester.Logging\WhoDeDoVille.ReactionTester.Logging.csproj", "{8729075A-EA43-40AF-B810-93D3C7731494}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{60F1FD20-2BA9-4656-83D3-8669D30C0553}"
+	ProjectSection(SolutionItems) = preProject
+		.gitattributes = .gitattributes
+		.gitignore = .gitignore
+		README.md = README.md
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
