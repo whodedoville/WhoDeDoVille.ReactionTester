@@ -1,0 +1,22 @@
+name: Test for dev .NET Core application to Function App af-WhoDeDoVille-ReactionTester-AFApi
+on:
+  workflow_dispatch:
+  push:
+    branches: [ "dev" ]
+env:
+  DOTNET_CORE_VERSION: 7.0.x
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+    - uses: actions/checkout@v3
+    - name: Setup .NET
+      uses: actions/setup-dotnet@v3
+      with:
+         dotnet-version: ${{ env.DOTNET_CORE_VERSION }}
+    - name: Restore dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --no-restore
+    - name: Test
+      run: dotnet test --no-build --verbosity normal
