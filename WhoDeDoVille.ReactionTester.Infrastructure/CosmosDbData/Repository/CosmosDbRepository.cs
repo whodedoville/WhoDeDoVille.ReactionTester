@@ -3,15 +3,20 @@
 //TODO: Add testing
 public abstract class CosmosDbRepository<T> : IRepository<T>, IContainerContext<T> where T : BaseEntity
 {
-    /// <summary>
-    /// Container name used when creating container
-    /// </summary>
-    public abstract string ContainerName { get; }
+    ///// <summary>
+    ///// Container name used when creating container
+    ///// </summary>
+    //public abstract string ContainerName { get; }
 
-    /// <summary>
-    /// Container name used when creating container
-    /// </summary>
-    public abstract string PartitionKeyPath { get; }
+    ///// <summary>
+    ///// Container name used when creating container
+    ///// </summary>
+    //public abstract string PartitionKeyPath { get; }
+
+    ///// <summary>
+    ///// Container is initialized.
+    ///// </summary>
+    //public abstract bool IsInitialized { get; }
 
     /// <summary>
     /// Generate id
@@ -40,6 +45,9 @@ public abstract class CosmosDbRepository<T> : IRepository<T>, IContainerContext<
     /// </summary>
     private readonly ICosmosDbContainerFactory _cosmosDbContainerFactory;
 
+    private IContainerInfoEntity _containerSettingsInfo;
+    private IDatabaseInfoEntity _databaseInfo;
+
     /// <summary>
     /// Cosmos DB database
     /// </summary>
@@ -50,30 +58,21 @@ public abstract class CosmosDbRepository<T> : IRepository<T>, IContainerContext<
     /// </summary>
     private readonly Container _container;
 
-    /// <summary>
-    /// Cosmos DB container Settings
-    /// </summary>
-    private readonly ContainerInfoEntity _containerSettingsInfo;
-
-    /// <summary>
-    /// Cosmos DB database Settings
-    /// </summary>
-    private readonly DatabaseInfoEntity _databaseSettingsInfo;
-
-    public CosmosDbRepository(ICosmosDbContainerFactory cosmosDbContainerFactory, ContainerInfoEntity containerInfo, DatabaseInfoEntity databaseInfo)
+    public CosmosDbRepository(ICosmosDbContainerFactory cosmosDbContainerFactory,
+        IContainerInfoEntity containerSettingsInfo)
     {
-        _containerSettingsInfo = containerInfo;
-        _databaseSettingsInfo = databaseInfo;
+        _containerSettingsInfo = containerSettingsInfo;
+        _databaseInfo = cosmosDbContainerFactory.GetDatabaseInfo();
 
         _cosmosDbContainerFactory = cosmosDbContainerFactory
             ?? throw new ArgumentNullException(nameof(ICosmosDbContainerFactory));
-        _database = _cosmosDbContainerFactory.GetDatabase(databaseInfo.DatabaseName)._database;
-        if (containerInfo.Initialized == false)
+        _database = _cosmosDbContainerFactory.GetDatabase()._database;
+        if (_containerSettingsInfo.IsInitialized == false)
         {
-            containerInfo.Initialized = true;
+            _containerSettingsInfo.IsInitialized = true;
             GenerateContainer();
         }
-        _container = _cosmosDbContainerFactory.GetContainer(containerInfo.Name)._container;
+        _container = _cosmosDbContainerFactory.GetContainer(_containerSettingsInfo.ContainerName)._container;
     }
 
     /// <summary>
@@ -302,7 +301,7 @@ public abstract class CosmosDbRepository<T> : IRepository<T>, IContainerContext<
     /// Get container settings info from the settings json file.
     /// </summary>
     /// <returns></returns>
-    public ContainerInfoEntity GetContainerSettingsInfo()
+    public IContainerInfoEntity GetContainerSettingsInfo()
     {
         return _containerSettingsInfo;
     }
@@ -311,8 +310,8 @@ public abstract class CosmosDbRepository<T> : IRepository<T>, IContainerContext<
     /// Get database settings info from the settings json file.
     /// </summary>
     /// <returns></returns>
-    public DatabaseInfoEntity GetDatabaseSettingsInfo()
+    public IDatabaseInfoEntity GetDatabaseSettingsInfo()
     {
-        return _databaseSettingsInfo;
+        return _databaseInfo;
     }
 }

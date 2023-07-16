@@ -3,23 +3,53 @@
     public class CosmosDbSettings : ICosmosDbSettings
     {
         /// <summary>
-        ///     CosmosDb Account - The Azure Cosmos DB endpoint
+        /// Set to true to by default check if database has been initiated.
         /// </summary>
-        public string? COSMOS_ENDPOINT { get; set; }
+        public string? RunInitiationCheck { get; set; }
 
         /// <summary>
-        ///     Key - The primary key for the Azure DocumentDB account.
+        /// Connection String Value
         /// </summary>
-        public string? COSMOS_KEY { get; set; }
+        public string? CosmosReactiontesterConnectionString { get; set; }
 
         /// <summary>
         ///     Database info
         /// </summary>
-        public DatabaseInfoEntity Database { get; set; } = new DatabaseInfoEntity();
+        public IDatabaseInfoEntity Database { get; } = new DatabaseInfoEntity()
+        {
+            DatabaseName = "ReactionTester",
+            Initialized = false
+        };
 
-        /// <summary>
-        ///     List of containers in the database
-        /// </summary>
-        public Dictionary<string, ContainerInfoEntity>? Containers { get; set; }
+        ///// <summary>
+        /////     List of containers in the database
+        ///// </summary>
+        //public Dictionary<string, ContainerInfoEntity> Containers { get; } = new Dictionary<string, ContainerInfoEntity>()
+        //{
+        //    {"User_Container", new ContainerInfoEntity()
+        //    {
+        //        ContainerName = "User",
+        //        PartitionKeyPath = "/UserId",
+        //        IsInitialized = false
+        //    } },
+        //    {"BoardSequence_Container", new ContainerInfoEntity()
+        //    {
+        //        ContainerName = "BoardSequence",
+        //        PartitionKeyPath = "/partitionkey",
+        //        IsInitialized = false
+        //    } },
+        //    {"Board_Container", new ContainerInfoEntity()
+        //    {
+        //        ContainerName = "Board",
+        //        PartitionKeyPath = "/partitionkey",
+        //        IsInitialized = false
+        //    } },
+        //    {"BoardList_Container", new ContainerInfoEntity()
+        //    {
+        //        ContainerName = "BoardList",
+        //        PartitionKeyPath = "/sequence",
+        //        IsInitialized = false
+        //    } }
+        //};
     }
 }

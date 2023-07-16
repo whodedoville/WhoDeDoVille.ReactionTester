@@ -4,14 +4,28 @@
     public class BoardRepository : CosmosDbRepository<BoardEntity>, IBoardRepository
     {
         /// <summary>
-        /// Container name used when creating container
+        /// Cosmos DB container Settings
         /// </summary>
-        public override string ContainerName { get; } = "Board";
+        private static ContainerInfoEntity ContainerSettingsInfo { get; set; } = new()
+        {
+            ContainerName = "Board",
+            PartitionKeyPath = "/partitionkey",
+            IsInitialized = false,
+        };
+        ///// <summary>
+        ///// Container name used when creating container
+        ///// </summary>
+        //public override string ContainerName { get; } = "Board";
 
-        /// <summary>
-        /// Container name used when creating container
-        /// </summary>
-        public override string PartitionKeyPath { get; } = "/partitionkey";
+        ///// <summary>
+        ///// Container name used when creating container
+        ///// </summary>
+        //public override string PartitionKeyPath { get; } = "/partitionkey";
+
+        ///// <summary>
+        ///// Container is initialized.
+        ///// </summary>
+        //public override bool IsInitialized {  get; } = false;
 
         /// <summary>
         /// Generate Id.
@@ -32,8 +46,8 @@
             return new($"{splitId[0]}:{splitId[1]}:{splitId[2].Substring(0, 6)}");
         }
 
-        public BoardRepository(ICosmosDbContainerFactory factory, ICosmosDbSettings cosmosDbSettings) :
-            base(factory, cosmosDbSettings.Containers["Board_Container"]!, cosmosDbSettings.Database!)
+        public BoardRepository(ICosmosDbContainerFactory factory) :
+            base(factory, ContainerSettingsInfo)
         { }
 
         /// <summary>
@@ -42,7 +56,7 @@
         /// <returns>Board Container Properties</returns>
         public override ContainerProperties GenerateContainerProperties()
         {
-            ContainerProperties containerProperties = new ContainerProperties(ContainerName, PartitionKeyPath);
+            ContainerProperties containerProperties = new ContainerProperties(ContainerSettingsInfo.ContainerName, ContainerSettingsInfo.PartitionKeyPath);
             containerProperties.IndexingPolicy = GetIndexingPolicy();
             containerProperties.UniqueKeyPolicy = GetUniqueKeyPolicy();
             return containerProperties;
@@ -59,7 +73,7 @@
             indexingPolicy.IndexingMode = IndexingMode.Consistent;
             indexingPolicy.Automatic = true;
             indexingPolicy.ExcludedPaths.Add(new ExcludedPath() { Path = "/*" });
-            indexingPolicy.IncludedPaths.Add(new IncludedPath() { Path = $"{PartitionKeyPath}/?" });
+            indexingPolicy.IncludedPaths.Add(new IncludedPath() { Path = $"{ContainerSettingsInfo.PartitionKeyPath}/?" });
 
             return indexingPolicy;
         }
@@ -72,7 +86,7 @@
         {
             var uniqueKeyPolicy = new UniqueKeyPolicy();
 
-            uniqueKeyPolicy.UniqueKeys.Add(new UniqueKey() { Paths = { "/difficulty", PartitionKeyPath } });
+            uniqueKeyPolicy.UniqueKeys.Add(new UniqueKey() { Paths = { "/difficulty", ContainerSettingsInfo.PartitionKeyPath } });
 
             return uniqueKeyPolicy;
         }

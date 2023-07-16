@@ -8,14 +8,24 @@ namespace WhoDeDoVille.ReactionTester.Infrastructure.CosmosDbData.Repository;
 public class UserRepository : CosmosDbRepository<User>, IUserRepository
 {
     /// <summary>
-    ///     Container name used when creating container
+    /// Cosmos DB container Settings
     /// </summary>
-    public override string ContainerName { get; } = "User";
+    private static ContainerInfoEntity ContainerSettingsInfo { get; set; } = new()
+    {
+        ContainerName = "User",
+        PartitionKeyPath = "/sequence",
+        IsInitialized = false,
+    };
 
-    /// <summary>
-    ///     Container name used when creating container
-    /// </summary>
-    public override string PartitionKeyPath { get; } = "/sequence";
+    ///// <summary>
+    /////     Container name used when creating container
+    ///// </summary>
+    //public override string ContainerName { get; } = "User";
+
+    ///// <summary>
+    /////     Container name used when creating container
+    ///// </summary>
+    //public override string PartitionKeyPath { get; } = "/sequence";
 
     /// <summary>
     ///     Generate Id.
@@ -36,7 +46,7 @@ public class UserRepository : CosmosDbRepository<User>, IUserRepository
     }
 
     public UserRepository(ICosmosDbContainerFactory factory, ICosmosDbSettings cosmosDbSettings) :
-        base(factory, cosmosDbSettings.Containers["User_Container"]!, cosmosDbSettings.Database!)
+        base(factory, ContainerSettingsInfo)
     { }
 
     // Use Cosmos DB Parameterized Query to avoid SQL Injection.
@@ -79,8 +89,8 @@ public class UserRepository : CosmosDbRepository<User>, IUserRepository
     {
         ContainerProperties containerProperties = new ContainerProperties()
         {
-            Id = ContainerName,
-            PartitionKeyPath = PartitionKeyPath,
+            Id = ContainerSettingsInfo.ContainerName,
+            PartitionKeyPath = ContainerSettingsInfo.PartitionKeyPath,
             IndexingPolicy = IndexingPolicy
         };
 

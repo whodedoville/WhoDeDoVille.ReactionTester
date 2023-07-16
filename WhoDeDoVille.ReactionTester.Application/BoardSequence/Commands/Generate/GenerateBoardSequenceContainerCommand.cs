@@ -16,7 +16,7 @@ public class GenerateBoardSequenceContainerCommand : ICommand<ContainerResponse>
             var containerSettingsInfo = BoardSequenceRepository.GetContainerSettingsInfo();
 
             if (request.CheckInitialized == false ||
-                (request.CheckInitialized == true && containerSettingsInfo.Initialized == false))
+                (request.CheckInitialized == true && containerSettingsInfo.IsInitialized == false))
             {
                 return await BoardSequenceRepository.GenerateContainerWithReturn();
             }

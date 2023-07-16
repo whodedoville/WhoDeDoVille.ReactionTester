@@ -1,6 +1,6 @@
-﻿namespace WhoDeDoVille.ReactionTester.Domain.Entities;
+﻿namespace WhoDeDoVille.ReactionTester.Domain.Interfaces.Entities;
 
-public class ContainerInfoEntity : IContainerInfoEntity
+public interface IContainerInfoEntity
 {
     /// <summary>
     ///     Container Name

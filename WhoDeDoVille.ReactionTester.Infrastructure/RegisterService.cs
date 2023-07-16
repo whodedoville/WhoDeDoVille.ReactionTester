@@ -12,9 +12,17 @@ public static class RegisterService
         ICosmosDbSettings cosmosDbSettings
         )
     {
+        //var client = new CosmosClient(
+        //    accountEndpoint: cosmosDbSettings.COSMOS_ENDPOINT!,
+        //    authKeyOrResourceToken: cosmosDbSettings.COSMOS_KEY!,
+        //    new CosmosClientOptions()
+        //    {
+        //        AllowBulkExecution = true,
+        //    }
+        //);
+
         var client = new CosmosClient(
-            accountEndpoint: cosmosDbSettings.COSMOS_ENDPOINT!,
-            authKeyOrResourceToken: cosmosDbSettings.COSMOS_KEY!,
+            connectionString: cosmosDbSettings.CosmosReactiontesterConnectionString,
             new CosmosClientOptions()
             {
                 AllowBulkExecution = true,
@@ -23,7 +31,7 @@ public static class RegisterService
         var cosmosDbClientFactory = new CosmosDbContainerFactory(
             client,
             cosmosDbSettings.Database!,
-            cosmosDbSettings.Containers!);
+            cosmosDbSettings.RunInitiationCheck!);
         services.AddSingleton<ICosmosDbContainerFactory>(cosmosDbClientFactory);
 
 

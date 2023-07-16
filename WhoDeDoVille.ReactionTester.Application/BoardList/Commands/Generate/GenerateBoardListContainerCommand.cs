@@ -16,7 +16,7 @@ public class GenerateBoardListContainerCommand : ICommand<ContainerResponse>
             var containerSettingsInfo = BoardListRepository.GetContainerSettingsInfo();
 
             if (request.CheckInitialized == false ||
-                (request.CheckInitialized == true && containerSettingsInfo.Initialized == false))
+                (request.CheckInitialized == true && containerSettingsInfo.IsInitialized == false))
             {
                 return await BoardListRepository.GenerateContainerWithReturn();
             }

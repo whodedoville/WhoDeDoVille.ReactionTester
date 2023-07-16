@@ -12,13 +12,12 @@ public interface ICosmosDbContainerFactory
     /// <summary>
     ///     Returns a CosmosDbDatabase wrapper
     /// </summary>
-    /// <param name="databaseName"></param>
     /// <returns></returns>
-    ICosmosDbDatabase GetDatabase(string databaseName);
+    ICosmosDbDatabase GetDatabase();
 
     /// <summary>
-    ///     Ensure the database is created
+    /// Get Information on Database.
     /// </summary>
     /// <returns></returns>
-    Task EnsureDbSetupAsync();
+    IDatabaseInfoEntity GetDatabaseInfo();
 }

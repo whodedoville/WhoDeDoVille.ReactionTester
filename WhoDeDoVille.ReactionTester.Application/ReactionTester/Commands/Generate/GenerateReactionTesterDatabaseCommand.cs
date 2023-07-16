@@ -17,7 +17,7 @@ public class GenerateReactionTesterDatabaseCommand : ICommand<ContainerResponse>
             var containerSettingsInfo = BoardRepository.GetContainerSettingsInfo();
 
             if (request.CheckInitialized == false ||
-                (request.CheckInitialized == true && containerSettingsInfo.Initialized == false))
+                (request.CheckInitialized == true && containerSettingsInfo.IsInitialized == false))
             {
                 return await BoardRepository.GenerateContainerWithReturn();
             }

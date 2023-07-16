@@ -90,5 +90,11 @@ public interface IRepository<T> where T : BaseEntity
     /// Get container settings info from the settings json file.
     /// </summary>
     /// <returns></returns>
-    ContainerInfoEntity GetContainerSettingsInfo();
+    IContainerInfoEntity GetContainerSettingsInfo();
+
+    /// <summary>
+    /// Get database settings info from the settings json file.
+    /// </summary>
+    /// <returns></returns>
+    IDatabaseInfoEntity GetDatabaseSettingsInfo();
 }

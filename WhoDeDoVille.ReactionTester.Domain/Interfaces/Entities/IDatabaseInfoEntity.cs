@@ -1,6 +1,6 @@
-﻿namespace WhoDeDoVille.ReactionTester.Domain.Entities;
+﻿namespace WhoDeDoVille.ReactionTester.Domain.Interfaces.Entities;
 
-public class DatabaseInfoEntity : IDatabaseInfoEntity
+public interface IDatabaseInfoEntity
 {
     /// <summary>
     ///     Database name

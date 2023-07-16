@@ -3,14 +3,24 @@
 public class BoardSequenceRepository : CosmosDbRepository<BoardSequenceEntity>, IBoardSequenceRepository
 {
     /// <summary>
-    /// Container name used when creating container
+    /// Cosmos DB container Settings
     /// </summary>
-    public override string ContainerName { get; } = "BoardSequence";
+    private static ContainerInfoEntity ContainerSettingsInfo { get; set; } = new()
+    {
+        ContainerName = "BoardSequence",
+        PartitionKeyPath = "/partitionkey",
+        IsInitialized = false,
+    };
 
-    /// <summary>
-    /// Container name used when creating container
-    /// </summary>
-    public override string PartitionKeyPath { get; } = "/partitionkey";
+    ///// <summary>
+    ///// Container name used when creating container
+    ///// </summary>
+    //public override string ContainerName { get; } = "BoardSequence";
+
+    ///// <summary>
+    ///// Container name used when creating container
+    ///// </summary>
+    //public override string PartitionKeyPath { get; } = "/partitionkey";
 
     /// <summary>
     /// Generate Id.
@@ -31,8 +41,8 @@ public class BoardSequenceRepository : CosmosDbRepository<BoardSequenceEntity>, 
         return new($"{splitId[0]}");
     }
 
-    public BoardSequenceRepository(ICosmosDbContainerFactory factory, ICosmosDbSettings cosmosDbSettings) :
-            base(factory, cosmosDbSettings.Containers["BoardSequence_Container"]!, cosmosDbSettings.Database!)
+    public BoardSequenceRepository(ICosmosDbContainerFactory factory) :
+            base(factory, ContainerSettingsInfo)
     { }
 
     /// <summary>
@@ -41,7 +51,7 @@ public class BoardSequenceRepository : CosmosDbRepository<BoardSequenceEntity>, 
     /// <returns>Board Container Properties</returns>
     public override ContainerProperties GenerateContainerProperties()
     {
-        ContainerProperties containerProperties = new ContainerProperties(ContainerName, PartitionKeyPath);
+        ContainerProperties containerProperties = new ContainerProperties(ContainerSettingsInfo.ContainerName, ContainerSettingsInfo.PartitionKeyPath);
         containerProperties.IndexingPolicy = GetIndexingPolicy();
         return containerProperties;
     }

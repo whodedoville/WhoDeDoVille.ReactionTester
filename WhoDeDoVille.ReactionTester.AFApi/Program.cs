@@ -1,13 +1,7 @@
-
 /// <summary>
 ///     Configuration settings from settings.json file.
 /// </summary>
 var configuration = ConfigurationSettings.GetConfigurationSettings();
-
-/// <summary>
-///     Where database connection information is located in the settings.json file.
-/// </summary>
-var cosmosDbSectionKey = "ConnectionStrings:ReactionTester";
 
 /// <summary>
 ///     Setup dependency injection.
@@ -24,7 +18,7 @@ var host = new HostBuilder()
         services.AddSingleton(configuration);
 
         var cosmosDbSettings = new CosmosDbSettings();
-        configuration.Bind(cosmosDbSectionKey, cosmosDbSettings);
+        configuration.Bind("ConnectionStrings", cosmosDbSettings);
         services.AddSingleton<ICosmosDbSettings>(cosmosDbSettings);
 
         services.AddApi();
