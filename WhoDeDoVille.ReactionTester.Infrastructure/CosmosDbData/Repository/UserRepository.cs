@@ -1,5 +1,6 @@
 ﻿
 
+using Microsoft.Extensions.Logging;
 using User = WhoDeDoVille.ReactionTester.Domain.Entities.User;
 
 namespace WhoDeDoVille.ReactionTester.Infrastructure.CosmosDbData.Repository;
@@ -45,8 +46,8 @@ public class UserRepository : CosmosDbRepository<User>, IUserRepository
         return new(entityId.Split(':')[0]);
     }
 
-    public UserRepository(ICosmosDbContainerFactory factory, ICosmosDbSettings cosmosDbSettings) :
-        base(factory, ContainerSettingsInfo)
+    public UserRepository(ICosmosDbContainerFactory factory, ILogger<UserRepository> logger) :
+        base(factory, logger, ContainerSettingsInfo)
     { }
 
     // Use Cosmos DB Parameterized Query to avoid SQL Injection.

@@ -14,7 +14,7 @@
 public class AddBoardListCommand : ICommand<BoardListEntity>
 {
     public int DifficultyLevel { get; set; }
-    public int SequenceNumber { get; set; }
+    public string SequenceNumber { get; set; }
     public DateTime CreatedDt { get; set; }
     public List<string>? BoardIdList { get; set; } = new List<string>();
 

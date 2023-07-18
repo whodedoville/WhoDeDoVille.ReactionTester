@@ -9,8 +9,8 @@ public class BoardListEntity : BaseEntity
     [JsonProperty("difficulty")]
     public int Difficulty { get; set; }
 
-    [JsonProperty("sequence")]
-    public int SequenceNumber { get; set; }
+    [JsonProperty("sequencenumber")]
+    public string SequenceNumber { get; set; }
 
     [JsonProperty("createdDT")]
     public DateTime CreatedDt { get; set; }

@@ -12,11 +12,11 @@ public class UpdateOrAddBoardSequenceCommandValidatorTests
     }
 
     [Theory]
-    [InlineData("Board:1", 1)]
-    [InlineData("Board:9", 2)]
+    [InlineData("Board:1", "1")]
+    [InlineData("Board:9", "2")]
     public void Given_UpdateOrAddBoardSequenceCommandValidatorTests_Is_Valid(
         string BoardSequenceId,
-        int SequenceNumber)
+        string SequenceNumber)
     {
         // Arrange
         var updateOrAddBoardSequenceCommand = new UpdateOrAddBoardSequenceCommand
@@ -37,10 +37,10 @@ public class UpdateOrAddBoardSequenceCommandValidatorTests
 
     [Theory]
     [InlineData("Board:0", null)]
-    [InlineData("Board:10", 0)]
+    [InlineData("Board:10", "0")]
     public void Given_UpdateOrAddBoardSequenceCommandValidatorTests_Is_Invalid(
         string BoardSequenceId,
-        int SequenceNumber)
+        string SequenceNumber)
     {
         // Arrange
         var updateOrAddBoardSequenceCommand = new UpdateOrAddBoardSequenceCommand

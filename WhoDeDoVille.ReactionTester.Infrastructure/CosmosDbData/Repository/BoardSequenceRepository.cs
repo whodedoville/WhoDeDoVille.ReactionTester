@@ -1,4 +1,6 @@
-﻿namespace WhoDeDoVille.ReactionTester.Infrastructure.CosmosDbData.Repository;
+﻿using Microsoft.Extensions.Logging;
+
+namespace WhoDeDoVille.ReactionTester.Infrastructure.CosmosDbData.Repository;
 
 public class BoardSequenceRepository : CosmosDbRepository<BoardSequenceEntity>, IBoardSequenceRepository
 {
@@ -41,8 +43,8 @@ public class BoardSequenceRepository : CosmosDbRepository<BoardSequenceEntity>, 
         return new($"{splitId[0]}");
     }
 
-    public BoardSequenceRepository(ICosmosDbContainerFactory factory) :
-            base(factory, ContainerSettingsInfo)
+    public BoardSequenceRepository(ICosmosDbContainerFactory factory, ILogger<BoardSequenceRepository> logger) :
+            base(factory, logger, ContainerSettingsInfo)
     { }
 
     /// <summary>

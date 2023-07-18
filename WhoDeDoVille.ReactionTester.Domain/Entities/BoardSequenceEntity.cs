@@ -2,8 +2,8 @@
 
 public class BoardSequenceEntity : BaseEntity
 {
-    [JsonProperty("sequence")]
-    public int SequenceNumber { get; set; }
+    [JsonProperty("sequencenumber")]
+    public string SequenceNumber { get; set; }
 
     [JsonProperty("createdDT")]
     public DateTime CreatedDt { get; set; }

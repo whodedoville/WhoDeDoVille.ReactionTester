@@ -79,6 +79,30 @@ public partial class LoggingMessages
     public partial void LoggingBehaviorHandled(string ClassRequest, string ClassResponse);
 
     /// <summary>
+    /// Request Class Name with parameters.
+    /// </summary>
+    /// <param name="ClassRequest">typeof(TRequest).Name</param>
+    /// <param name="RequestParameterKeys"></param>
+    /// <param name="RequestParameters"></param>
+    [LoggerMessage(
+        EventId = (int)LoggingEventId.LoggingBehaviorHandlingWithParams,
+        Level = LogLevel.Information,
+        Message = "Handling Request:{ClassRequest} keys:{RequestParameterKeys} parameters:{RequestParameters}")]
+    public partial void LoggingBehaviorHandlingWithParams(string ClassRequest, string RequestParameterKeys, string RequestParameters);
+
+    /// <summary>
+    /// Handled Request Class name and response Class name.
+    /// </summary>
+    /// <param name="ClassRequest">typeof(TRequest).Name</param>
+    /// <param name="ClassResponse">typeof(TResponse).Name</param>
+    /// <param name="Response">Serialized Response</param>
+    [LoggerMessage(
+        EventId = (int)LoggingEventId.LoggingBehaviorHandledWithResponse,
+        Level = LogLevel.Information,
+        Message = "Handled Request:{ClassRequest} -> ClassResponse:{ClassResponse} Response:{Response}")]
+    public partial void LoggingBehaviorHandledWithResponse(string ClassRequest, string ClassResponse, string Response);
+
+    /// <summary>
     /// Log empty variable that shouldn't be empty.
     /// </summary>
     /// <param name="ClassName">Class log is in.</param>

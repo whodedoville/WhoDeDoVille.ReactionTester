@@ -8,7 +8,7 @@ namespace WhoDeDoVille.ReactionTester.Application.Common.Builders;
 public class BoardAndBoardListBuilder : IBoardAndBoardListBuilder
 {
     private int _difficultyLevel { get; }
-    private int _sequenceNumber { get; }
+    private string _sequenceNumber { get; }
     private int _boardCount { get; }
     private DateTime _dateTime { get; } = DateTime.UtcNow;
     public List<BoardBuilder> BoardBuilderList { get; set; } = new List<BoardBuilder>();
@@ -32,7 +32,7 @@ public class BoardAndBoardListBuilder : IBoardAndBoardListBuilder
     /// <returns>Boolean if boards were successfully created</returns>
     public BoardAndBoardListBuilder(
         int DifficultyLevel,
-        int SequenceNumber,
+        string SequenceNumber,
         int BoardCount,
         ISender sender)
     {

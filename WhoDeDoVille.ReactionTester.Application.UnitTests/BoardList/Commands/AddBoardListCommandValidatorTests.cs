@@ -13,11 +13,11 @@ public class AddBoardListCommandValidatorTests
     }
 
     [Theory]
-    [InlineData(1, 1)]
-    [InlineData(2, 2)]
+    [InlineData(1, "1")]
+    [InlineData(2, "2")]
     public void Given_GenerateBoardGetNextSequenceCommandValidator_Is_Valid(
         int DifficultyLevel,
-        int SequenceNumber)
+        string SequenceNumber)
     {
         // Arrange
         var addBoardListCommand = new AddBoardListCommand

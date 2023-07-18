@@ -5,7 +5,7 @@ namespace WhoDeDoVille.ReactionTester.Application.BoardSequence.Commands;
 public class UpdateOrAddBoardSequenceCommand : ICommand<bool>
 {
     public string BoardSequenceId { get; set; }
-    public int SequenceNumber { get; set; }
+    public string SequenceNumber { get; set; }
     public DateTime CreatedDt { get; set; }
 
     public class UpdateOrAddBoardSequenceHandler : ApplicationBase, IRequestHandler<UpdateOrAddBoardSequenceCommand, bool>
@@ -27,7 +27,7 @@ public class UpdateOrAddBoardSequenceCommand : ICommand<bool>
 
                 List<PatchOperation> patchOperations = new()
                 {
-                    PatchOperation.Replace("/sequence", boardSequenceEntity.SequenceNumber),
+                    PatchOperation.Replace("/sequencenumber", boardSequenceEntity.SequenceNumber),
                     PatchOperation.Replace("/updatedDt", boardSequenceEntity.UpdatedDt),
                 };
 
