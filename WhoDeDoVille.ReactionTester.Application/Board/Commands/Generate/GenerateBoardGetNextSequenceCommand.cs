@@ -29,14 +29,14 @@ public class GenerateBoardGetNextSequenceHandler : ApplicationBase, IRequestHand
         var dcResult = new DatabaseAndContainerBuilder(_sender, _loggerFactory) { DatabaseAndContainerNamesEnums = dcList };
         var dcResponse = await dcResult.InitializeDatabaseAndContainer();
 
-        var sequenceNumber = 1;
+        var sequenceNumber = "1";
         var boardCount = BoardConfig.DefaultBoardCount;
         var boardSequence = await _sender.Send(new GetSingleBoardSequenceByIdQuery
         {
             BoardSequenceId = $"Board:{request.DifficultyLevel}"
         });
 
-        if (boardSequence.SequenceNumber > 0) sequenceNumber = boardSequence.SequenceNumber + 1;
+        if (Convert.ToInt32(boardSequence.SequenceNumber) > 0) sequenceNumber = (Convert.ToInt32(boardSequence.SequenceNumber) + 1).ToString();
         if (request.BoardCount != null) boardCount = (int)request.BoardCount;
 
         var boardListGeneratorEntity = new BoardAndBoardListBuilder(

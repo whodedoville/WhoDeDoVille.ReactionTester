@@ -1,5 +1,4 @@
-﻿using WhoDeDoVille.ReactionTester.Application.BoardSequence.Commands;
-
+﻿
 namespace WhoDeDoVille.ReactionTester.Application.Board.Commands;
 
 public class AddBoardListGeneratorResultsCommand : ICommand<bool>

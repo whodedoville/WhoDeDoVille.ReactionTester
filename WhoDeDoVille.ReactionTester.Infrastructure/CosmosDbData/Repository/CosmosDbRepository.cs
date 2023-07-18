@@ -1,4 +1,7 @@
-﻿namespace WhoDeDoVille.ReactionTester.Infrastructure.CosmosDbData.Repository;
+﻿using Microsoft.Extensions.Logging;
+using WhoDeDoVille.ReactionTester.Logging;
+
+namespace WhoDeDoVille.ReactionTester.Infrastructure.CosmosDbData.Repository;
 
 //TODO: Add testing
 public abstract class CosmosDbRepository<T> : IRepository<T>, IContainerContext<T> where T : BaseEntity
@@ -47,6 +50,7 @@ public abstract class CosmosDbRepository<T> : IRepository<T>, IContainerContext<
 
     private IContainerInfoEntity _containerSettingsInfo;
     private IDatabaseInfoEntity _databaseInfo;
+    private readonly LoggingCosmosExceptionMessages _loggingCosmosExceptionMessages;
 
     /// <summary>
     /// Cosmos DB database
@@ -59,8 +63,9 @@ public abstract class CosmosDbRepository<T> : IRepository<T>, IContainerContext<
     private readonly Container _container;
 
     public CosmosDbRepository(ICosmosDbContainerFactory cosmosDbContainerFactory,
-        IContainerInfoEntity containerSettingsInfo)
+        ILogger logger, IContainerInfoEntity containerSettingsInfo)
     {
+        _loggingCosmosExceptionMessages = new LoggingCosmosExceptionMessages(logger);
         _containerSettingsInfo = containerSettingsInfo;
         _databaseInfo = cosmosDbContainerFactory.GetDatabaseInfo();
 
@@ -83,10 +88,12 @@ public abstract class CosmosDbRepository<T> : IRepository<T>, IContainerContext<
     /// <param name="item"></param>
     public async Task AddItemAsync(T item)
     {
-        if (item.Id == null)
-        {
-            item.Id = GenerateId(item);
-        }
+        item.Id ??= GenerateId(item);
+
+        //if (item.Id == null)
+        //{
+        //    item.Id = GenerateId(item);
+        //}
 
         var key = ResolvePartitionKey(item.Id);
         await _container.CreateItemAsync(item, key);

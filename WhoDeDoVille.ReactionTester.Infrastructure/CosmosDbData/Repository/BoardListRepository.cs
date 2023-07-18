@@ -1,4 +1,6 @@
-﻿namespace WhoDeDoVille.ReactionTester.Infrastructure.CosmosDbData.Repository;
+﻿using Microsoft.Extensions.Logging;
+
+namespace WhoDeDoVille.ReactionTester.Infrastructure.CosmosDbData.Repository;
 
 //TODO: Add testing
 public class BoardListRepository : CosmosDbRepository<BoardListEntity>, IBoardListRepository
@@ -9,7 +11,7 @@ public class BoardListRepository : CosmosDbRepository<BoardListEntity>, IBoardLi
     private static ContainerInfoEntity ContainerSettingsInfo { get; set; } = new()
     {
         ContainerName = "BoardList",
-        PartitionKeyPath = "/sequence",
+        PartitionKeyPath = "/sequencenumber",
         IsInitialized = false,
     };
 
@@ -39,8 +41,8 @@ public class BoardListRepository : CosmosDbRepository<BoardListEntity>, IBoardLi
     public override PartitionKey ResolvePartitionKey(string entityId) => new(entityId.Split(':')[1]);
 
 
-    public BoardListRepository(ICosmosDbContainerFactory factory) :
-        base(factory, ContainerSettingsInfo)
+    public BoardListRepository(ICosmosDbContainerFactory factory, ILogger<BoardListRepository> logger) :
+        base(factory, logger, ContainerSettingsInfo)
     { }
 
     /// <summary>

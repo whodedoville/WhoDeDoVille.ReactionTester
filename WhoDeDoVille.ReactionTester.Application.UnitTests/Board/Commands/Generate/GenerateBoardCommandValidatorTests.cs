@@ -12,11 +12,11 @@ public class GenerateBoardCommandValidatorTests
     }
 
     [Theory]
-    [InlineData(1, 1, 1)]
-    [InlineData(7, 1000, 100)]
+    [InlineData(1, "1", 1)]
+    [InlineData(7, "1000", 100)]
     public void Given_GenerateBoardCommandValidator_Is_Valid(
         int DifficultyLevel,
-        int SequenceNum,
+        string SequenceNum,
         int BoardCount)
     {
         // Arrange
@@ -37,11 +37,11 @@ public class GenerateBoardCommandValidatorTests
     }
 
     [Theory]
-    [InlineData(0, 0, 0)]
-    [InlineData(0, -1, 101)]
+    [InlineData(0, "0", 0)]
+    [InlineData(0, "-1", 101)]
     public void Given_GenerateBoardCommandValidator_Is_Invalid(
         int DifficultyLevel,
-        int SequenceNum,
+        string SequenceNum,
         int BoardCount)
     {
         // Arrange

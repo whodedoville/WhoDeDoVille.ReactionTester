@@ -1,14 +1,15 @@
 {
   "version": "2.0",
   "logging": {
+    "logLevel": {
+      "default": "Debug",
+      "WhoDeDoVille.ReactionTester.AFApi.Functions": "Debug"
+    },
     "applicationInsights": {
       "samplingSettings": {
         "isEnabled": true,
         "excludedTypes": "Request"
       }
     }
-    //"logLevel": {
-    //  "default": "Information"
-    //}
   }
 }

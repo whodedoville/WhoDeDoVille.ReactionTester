@@ -12,7 +12,7 @@
 public class GenerateBoardCommand : ICommand<bool>
 {
     public int DifficultyLevel { get; set; }
-    public int SequenceNumber { get; set; }
+    public string SequenceNumber { get; set; }
     public int BoardCount { get; set; }
 }
 

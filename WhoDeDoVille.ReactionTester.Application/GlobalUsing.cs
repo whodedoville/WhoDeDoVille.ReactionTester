@@ -9,6 +9,7 @@ global using WhoDeDoVille.ReactionTester.Application.Board.DTO;
 global using WhoDeDoVille.ReactionTester.Application.BoardList.Commands;
 global using WhoDeDoVille.ReactionTester.Application.BoardList.DTO;
 global using WhoDeDoVille.ReactionTester.Application.BoardList.Queries;
+global using WhoDeDoVille.ReactionTester.Application.BoardSequence.Commands;
 global using WhoDeDoVille.ReactionTester.Application.BoardSequence.DTO;
 global using WhoDeDoVille.ReactionTester.Application.Common.BaseClass;
 global using WhoDeDoVille.ReactionTester.Application.Common.Behaviors;

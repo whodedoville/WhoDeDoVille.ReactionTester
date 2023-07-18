@@ -2,7 +2,7 @@
 
 public class BoardSequenceDTO : IMapFrom<BoardSequenceEntity>
 {
-    public int SequenceNumber { get; set; }
+    public string SequenceNumber { get; set; }
 
     public void Mapping(Profile profile)
     {
