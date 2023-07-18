@@ -5,6 +5,10 @@ public static class LoggingStaticTools
 {
     public static string ObjectToString(object request)
     {
-        return JsonConvert.SerializeObject(request);
+        if (request == null) return "";
+        return JsonConvert.SerializeObject(request, Formatting.None, new JsonSerializerSettings()
+        {
+            ReferenceLoopHandling = ReferenceLoopHandling.Ignore,
+        });
     }
 }

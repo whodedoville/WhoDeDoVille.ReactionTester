@@ -1,5 +1,4 @@
-﻿using Newtonsoft.Json;
-using WhoDeDoVille.ReactionTester.Logging;
+﻿using WhoDeDoVille.ReactionTester.Logging;
 
 namespace WhoDeDoVille.ReactionTester.Application.Common.Behaviors;
 
@@ -19,12 +18,18 @@ public class LoggingBehavior<TRequest, TResponse> : IPipelineBehavior<TRequest, 
         CancellationToken cancellationToken)
     {
         _loggingMessages.LoggingBehaviorHandling(typeof(TRequest).Name);
-        _loggingMessages.LoggingBehaviorHandlingWithParams(typeof(TRequest).Name, request.GetType().GetProperties().ToString(), JsonConvert.SerializeObject(request));
+        _loggingMessages.LoggingBehaviorHandlingWithParams(
+            typeof(TRequest).Name,
+            request.GetType().GetProperties().ToString(),
+            LoggingStaticTools.ObjectToString(request));
 
         var response = await next();
 
         _loggingMessages.LoggingBehaviorHandled(typeof(TRequest).Name, typeof(TResponse).Name);
-        _loggingMessages.LoggingBehaviorHandledWithResponse(typeof(TRequest).Name, typeof(TResponse).Name, JsonConvert.SerializeObject(response));
+        _loggingMessages.LoggingBehaviorHandledWithResponse(
+            typeof(TRequest).Name,
+            typeof(TResponse).Name,
+            LoggingStaticTools.ObjectToString(response));
 
         return response;
     }
